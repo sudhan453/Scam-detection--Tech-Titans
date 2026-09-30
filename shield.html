@@ -1,0 +1,2099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>ShieldPay AI - Pre-Payment Scam Protection</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+ --bg:#f4f7fb;
+ --card:#fff;
+ --text:#111827;
+ --muted:#667085;
+ --primary:#5b4cff;
+ --purple:#7c3aed;
+ --green:#16a34a;
+ --yellow:#d97706;
+ --red:#dc2626;
+ --border:#e5e7eb;
+}
+
+body{
+ font-family:Arial,sans-serif;
+ background:var(--bg);
+ color:var(--text);
+ transition:.3s;
+}
+
+body.dark{
+ --bg:#0b1020;
+ --card:#151c30;
+ --text:#f8fafc;
+ --muted:#aab3c5;
+ --border:#293249;
+}
+
+nav{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(255,255,255,.94);
+ backdrop-filter:blur(15px);
+ border-bottom:1px solid var(--border);
+}
+
+body.dark nav{background:rgba(21,28,48,.94)}
+
+.nav{
+ max-width:1200px;
+ margin:auto;
+ padding:14px 18px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
+
+.logo{
+ display:flex;
+ align-items:center;
+ gap:10px;
+ font-size:20px;
+ font-weight:800;
+}
+
+.logo-icon{
+ width:42px;
+ height:42px;
+ border-radius:12px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ color:white;
+ background:linear-gradient(135deg,var(--primary),var(--purple));
+}
+
+.navlinks{
+ display:flex;
+ gap:6px;
+}
+
+.navlinks button,
+.icon{
+ border:0;
+ background:transparent;
+ color:var(--text);
+ padding:10px;
+ cursor:pointer;
+ border-radius:9px;
+}
+
+.navlinks button:hover,
+.icon:hover{
+ background:var(--bg);
+}
+
+.hero{
+ max-width:1200px;
+ margin:auto;
+ padding:65px 20px 45px;
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ align-items:center;
+ gap:30px;
+}
+
+.badge{
+ display:inline-block;
+ background:#ede9fe;
+ color:#5b21b6;
+ padding:8px 13px;
+ border-radius:30px;
+ font-size:12px;
+ font-weight:bold;
+ margin-bottom:18px;
+}
+
+body.dark .badge{
+ background:#302653;
+ color:#c4b5fd;
+}
+
+.hero h1{
+ font-size:clamp(40px,6vw,70px);
+ line-height:1;
+ margin-bottom:20px;
+}
+
+.gradient{
+ background:linear-gradient(90deg,#5b4cff,#9333ea,#2563eb);
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+.hero p{
+ color:var(--muted);
+ font-size:18px;
+ line-height:1.7;
+ max-width:700px;
+}
+
+.buttons{
+ display:flex;
+ gap:12px;
+ margin-top:25px;
+ flex-wrap:wrap;
+}
+
+.btn{
+ border:0;
+ border-radius:11px;
+ padding:13px 18px;
+ cursor:pointer;
+ font-weight:800;
+}
+
+.primary{
+ background:linear-gradient(135deg,var(--primary),var(--purple));
+ color:white;
+}
+
+.secondary{
+ background:var(--card);
+ border:1px solid var(--border);
+ color:var(--text);
+}
+
+.shield{
+ width:260px;
+ height:290px;
+ margin:auto;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:90px;
+ color:white;
+ background:linear-gradient(145deg,#5b4cff,#7c3aed);
+ clip-path:polygon(50% 0,90% 16%,86% 65%,70% 85%,50% 100%,30% 85%,14% 65%,10% 16%);
+ box-shadow:0 25px 70px rgba(91,76,255,.3);
+}
+
+.container{
+ max-width:1200px;
+ margin:auto;
+ padding:20px;
+}
+
+.title{
+ margin:45px 0 20px;
+}
+
+.title h2{font-size:30px}
+.title p{color:var(--muted);margin-top:7px}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px;
+}
+
+.card{
+ background:var(--card);
+ border:1px solid var(--border);
+ border-radius:18px;
+ padding:22px;
+ box-shadow:0 8px 25px rgba(0,0,0,.04);
+}
+
+.stat-number{
+ font-size:28px;
+ font-weight:900;
+ margin-top:8px;
+}
+
+.stat-label{
+ color:var(--muted);
+ font-size:13px;
+ margin-top:4px;
+}
+
+.payment-layout{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:20px;
+}
+
+label{
+ display:block;
+ font-size:13px;
+ font-weight:bold;
+ margin:12px 0 6px;
+}
+
+input,select,textarea{
+ width:100%;
+ padding:13px;
+ border:1px solid var(--border);
+ background:var(--bg);
+ color:var(--text);
+ border-radius:10px;
+ outline:none;
+}
+
+input:focus,select:focus,textarea:focus{
+ border-color:var(--primary);
+}
+
+textarea{
+ min-height:130px;
+ resize:vertical;
+}
+
+.paybox{
+ text-align:center;
+ padding:10px;
+}
+
+.avatar{
+ width:70px;
+ height:70px;
+ border-radius:50%;
+ margin:auto;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ font-size:32px;
+ background:#ede9fe;
+}
+
+.amount{
+ font-size:42px;
+ font-weight:900;
+ margin:15px 0;
+}
+
+.pay-button{
+ width:100%;
+ padding:17px;
+ border:0;
+ border-radius:12px;
+ background:#16a34a;
+ color:white;
+ font-size:16px;
+ font-weight:900;
+ cursor:pointer;
+}
+
+.pay-button:hover{
+ background:#15803d;
+}
+
+.protection{
+ margin-top:15px;
+ padding:14px;
+ border-radius:11px;
+ background:#ecfdf3;
+ color:#166534;
+ font-size:13px;
+ line-height:1.5;
+}
+
+body.dark .protection{
+ background:#123122;
+ color:#86efac;
+}
+
+.demo-buttons{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.demo{
+ cursor:pointer;
+ transition:.2s;
+}
+
+.demo:hover{
+ transform:translateY(-4px);
+}
+
+.demo h3{
+ margin:10px 0;
+}
+
+.demo p{
+ color:var(--muted);
+ font-size:13px;
+ line-height:1.5;
+}
+
+.features{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+}
+
+.feature h3{margin:10px 0}
+
+.feature p{
+ color:var(--muted);
+ line-height:1.6;
+ font-size:14px;
+}
+
+.feature-icon{
+ font-size:30px;
+}
+
+.history{
+ margin-top:10px;
+}
+
+.history-item{
+ padding:14px 0;
+ border-bottom:1px solid var(--border);
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+}
+
+.history-item:last-child{border:0}
+
+.history-text{
+ overflow:hidden;
+}
+
+.history-text strong{
+ display:block;
+ white-space:nowrap;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ max-width:650px;
+}
+
+.history-text small{
+ color:var(--muted);
+}
+
+.tag{
+ padding:6px 9px;
+ border-radius:20px;
+ font-size:11px;
+ font-weight:900;
+ white-space:nowrap;
+}
+
+.high{
+ color:#991b1b;
+ background:#fee2e2;
+}
+
+.medium{
+ color:#92400e;
+ background:#fef3c7;
+}
+
+.low{
+ color:#166534;
+ background:#dcfce7;
+}
+
+/* WARNING MODAL */
+
+.modal{
+ display:none;
+ position:fixed;
+ inset:0;
+ background:rgba(0,0,0,.72);
+ z-index:1000;
+ padding:18px;
+ align-items:center;
+ justify-content:center;
+}
+
+.modal.show{
+ display:flex;
+}
+
+.warning{
+ width:100%;
+ max-width:560px;
+ max-height:92vh;
+ overflow:auto;
+ background:var(--card);
+ color:var(--text);
+ border-radius:22px;
+ padding:25px;
+ box-shadow:0 30px 100px rgba(0,0,0,.4);
+ animation:popup .25s ease;
+}
+
+@keyframes popup{
+ from{transform:scale(.9);opacity:0}
+ to{transform:scale(1);opacity:1}
+}
+
+.warning-top{
+ text-align:center;
+}
+
+.warning-icon{
+ width:75px;
+ height:75px;
+ margin:auto;
+ border-radius:50%;
+ background:#fee2e2;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:40px;
+}
+
+.warning h2{
+ margin:15px 0 7px;
+ color:var(--red);
+}
+
+.warning-sub{
+ color:var(--muted);
+ line-height:1.5;
+}
+
+.risk{
+ margin:20px 0;
+ padding:17px;
+ border-radius:13px;
+ background:#fff1f2;
+ border:1px solid #fecdd3;
+ text-align:center;
+}
+
+.risk-number{
+ font-size:42px;
+ font-weight:900;
+ color:var(--red);
+}
+
+.risk-label{
+ font-weight:900;
+ color:#991b1b;
+}
+
+.signal-list{
+ margin-top:15px;
+}
+
+.signal{
+ padding:12px;
+ margin:8px 0;
+ background:var(--bg);
+ border-radius:10px;
+ line-height:1.5;
+}
+
+.signal strong{
+ display:block;
+ margin-bottom:4px;
+}
+
+.action{
+ margin-top:18px;
+ padding:15px;
+ border-radius:12px;
+ background:#fff7ed;
+ color:#9a3412;
+ line-height:1.5;
+}
+
+.modal-buttons{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:10px;
+ margin-top:18px;
+}
+
+.block-button{
+ padding:14px;
+ border:0;
+ border-radius:10px;
+ cursor:pointer;
+ font-weight:800;
+ background:#dc2626;
+ color:white;
+}
+
+.verify-button{
+ padding:14px;
+ border:0;
+ border-radius:10px;
+ cursor:pointer;
+ font-weight:800;
+ background:#16a34a;
+ color:white;
+}
+
+.safe-modal{
+ width:100%;
+ max-width:480px;
+ background:var(--card);
+ color:var(--text);
+ padding:30px;
+ border-radius:20px;
+ text-align:center;
+}
+
+.safe-icon{
+ font-size:65px;
+}
+
+footer{
+ margin-top:60px;
+ padding:35px 20px;
+ background:#0b1020;
+ color:white;
+}
+
+.footer{
+ max-width:1200px;
+ margin:auto;
+ display:flex;
+ justify-content:space-between;
+ gap:20px;
+}
+
+footer p{
+ color:#9ca3af;
+ font-size:13px;
+ margin-top:7px;
+}
+
+.toast{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ background:#111827;
+ color:white;
+ padding:14px 18px;
+ border-radius:11px;
+ opacity:0;
+ transform:translateY(20px);
+ transition:.3s;
+ z-index:2000;
+}
+
+.toast.show{
+ opacity:1;
+ transform:translateY(0);
+}
+
+@media(max-width:850px){
+
+ .hero{
+  grid-template-columns:1fr;
+ }
+
+ .shield{
+  display:none;
+ }
+
+ .stats{
+  grid-template-columns:1fr 1fr;
+ }
+
+ .payment-layout{
+  grid-template-columns:1fr;
+ }
+
+ .features,
+ .demo-buttons{
+  grid-template-columns:1fr;
+ }
+
+ .navlinks{
+  display:none;
+ }
+}
+
+@media(max-width:500px){
+
+ .stats{
+  grid-template-columns:1fr;
+ }
+
+ .hero{
+  padding-top:40px;
+ }
+
+ .hero h1{
+  font-size:43px;
+ }
+
+ .modal-buttons{
+  grid-template-columns:1fr;
+ }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+<div class="nav">
+
+<div class="logo">
+<div class="logo-icon">🛡️</div>
+ShieldPay AI
+</div>
+
+<div class="navlinks">
+<button onclick="scrollToId('home')">Home</button>
+<button onclick="scrollToId('payment')">Payment</button>
+<button onclick="scrollToId('features')">Features</button>
+<button onclick="scrollToId('history')">History</button>
+</div>
+
+<div>
+<button class="icon" onclick="toggleDark()">🌙</button>
+</div>
+
+</div>
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div>
+
+<div class="badge">
+VH-S02 • PRE-PAYMENT PROTECTION
+</div>
+
+<h1>
+Don't pay first.<br>
+<span class="gradient">Check first.</span>
+</h1>
+
+<p>
+ShieldPay AI checks suspicious payment situations
+BEFORE money is sent. It looks for urgency,
+impersonation, suspicious links, OTP requests,
+remote-access requests and unusual payment instructions.
+</p>
+
+<div class="buttons">
+
+<button class="btn primary"
+onclick="scrollToId('payment')">
+🛡️ Start Safety Check
+</button>
+
+<button class="btn secondary"
+onclick="loadScamDemo()">
+🚨 Try Scam Demo
+</button>
+
+</div>
+
+</div>
+
+<div>
+<div class="shield">🛡️</div>
+</div>
+
+</section>
+
+
+<div class="container">
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="card">
+<div>🔍</div>
+<div class="stat-number" id="scanCount">0</div>
+<div class="stat-label">Safety checks</div>
+</div>
+
+<div class="card">
+<div>🚨</div>
+<div class="stat-number" id="blockedCount">0</div>
+<div class="stat-label">Payments blocked</div>
+</div>
+
+<div class="card">
+<div>🧠</div>
+<div class="stat-number">12+</div>
+<div class="stat-label">Risk signals</div>
+</div>
+
+<div class="card">
+<div>🔐</div>
+<div class="stat-number">LOCAL</div>
+<div class="stat-label">Demo processing</div>
+</div>
+
+</div>
+
+
+<!-- PAYMENT SIMULATOR -->
+
+<div class="title" id="payment">
+
+<h2>💳 Payment Safety Check</h2>
+
+<p>
+The payment button does NOT immediately pay.
+ShieldPay checks the request first.
+</p>
+
+</div>
+
+
+<div class="payment-layout">
+
+<!-- PAYMENT REQUEST -->
+
+<div class="card">
+
+<h3>Payment Request</h3>
+
+<label>Recipient</label>
+
+<input
+id="recipient"
+value="ABC Customer Support"
+placeholder="Recipient name"
+>
+
+<label>Amount</label>
+
+<input
+id="payAmount"
+type="number"
+value="1500"
+placeholder="Amount"
+>
+
+<label>Payment Method</label>
+
+<select id="method">
+<option>UPI</option>
+<option>Bank Transfer</option>
+<option>Card</option>
+<option>QR Code</option>
+<option>Wallet</option>
+</select>
+
+<label>Message / Payment Context</label>
+
+<textarea id="paymentMessage">URGENT! Your bank account will be blocked today. Complete KYC immediately and pay ₹1500 verification fee using this link: http://secure-bank-login.example.xyz</textarea>
+
+</div>
+
+
+<!-- PAYMENT CARD -->
+
+<div class="card paybox">
+
+<div class="avatar">👤</div>
+
+<h3 style="margin-top:12px" id="recipientDisplay">
+ABC Customer Support
+</h3>
+
+<div class="amount">
+₹<span id="amountDisplay">1,500</span>
+</div>
+
+<p style="color:var(--muted)">
+Payment will be checked before it can proceed.
+</p>
+
+<br>
+
+<button class="pay-button" onclick="startPayment()">
+🔒 PAY NOW — SAFETY CHECK FIRST
+</button>
+
+<div class="protection">
+
+🛡️ <strong>Protected by ShieldPay AI</strong><br>
+A safety analysis will happen BEFORE the simulated payment.
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DEMO -->
+
+<div class="title">
+
+<h2>🚨 Hackathon Demo Scenarios</h2>
+
+<p>Choose a scenario and then press PAY NOW.</p>
+
+</div>
+
+<div class="demo-buttons">
+
+<div class="card demo" onclick="loadScamDemo()">
+
+<div style="font-size:35px">🚨</div>
+
+<h3>Fake KYC</h3>
+
+<p>
+Urgent account-blocking message with
+verification payment and suspicious URL.
+</p>
+
+</div>
+
+
+<div class="card demo" onclick="loadSupportDemo()">
+
+<div style="font-size:35px">☎️</div>
+
+<h3>Fake Customer Care</h3>
+
+<p>
+Support agent requests OTP and
+remote screen access.
+</p>
+
+</div>
+
+
+<div class="card demo" onclick="loadSafeDemo()">
+
+<div style="font-size:35px">✅</div>
+
+<h3>Normal Payment</h3>
+
+<p>
+Normal order payment without obvious
+social-engineering indicators.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- FEATURES -->
+
+<div class="title" id="features">
+
+<h2>🧠 How ShieldPay Protects Users</h2>
+
+<p>
+The system focuses on explainable pre-payment warnings.
+</p>
+
+</div>
+
+
+<div class="features">
+
+<div class="card feature">
+
+<div class="feature-icon">⏱️</div>
+
+<h3>1. Before Payment</h3>
+
+<p>
+The safety check occurs when the user presses
+Pay — before the simulated transaction is allowed.
+</p>
+
+</div>
+
+
+<div class="card feature">
+
+<div class="feature-icon">🔎</div>
+
+<h3>2. Signal Detection</h3>
+
+<p>
+The prototype checks urgency, impersonation,
+OTP requests, suspicious URLs, remote access
+and unusual payment requests.
+</p>
+
+</div>
+
+
+<div class="card feature">
+
+<div class="feature-icon">💡</div>
+
+<h3>3. Explainable Warning</h3>
+
+<p>
+Instead of only displaying "SCAM", the system
+shows the specific signals that triggered the warning.
+</p>
+
+</div>
+
+
+<div class="card feature">
+
+<div class="feature-icon">🛑</div>
+
+<h3>4. Payment Blocking</h3>
+
+<p>
+High-risk payments are blocked in the prototype
+until the user completes the verification step.
+</p>
+
+</div>
+
+
+<div class="card feature">
+
+<div class="feature-icon">🔐</div>
+
+<h3>5. Privacy Conscious</h3>
+
+<p>
+This demonstration performs analysis locally
+inside the browser and does not require payment credentials.
+</p>
+
+</div>
+
+
+<div class="card feature">
+
+<div class="feature-icon">📊</div>
+
+<h3>6. Risk Score</h3>
+
+<p>
+The system produces a 0–100 demonstration score
+to communicate the number of detected warning signals.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- HISTORY -->
+
+<div class="title" id="history">
+
+<h2>📋 Safety Check History</h2>
+
+<p>
+Stored locally in this browser for the demonstration.
+</p>
+
+</div>
+
+<div class="card history" id="historyList">
+
+<p style="color:var(--muted)">
+No safety checks yet.
+</p>
+
+</div>
+
+<div style="margin-top:12px">
+
+<button class="btn secondary" onclick="clearHistory()">
+🗑 Clear History
+</button>
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer">
+
+<div>
+<h3>🛡️ ShieldPay AI</h3>
+<p>VH-S02 Hackathon Prototype</p>
+</div>
+
+<div>
+<p>
+Detect the risk before the money moves.
+</p>
+<p>
+© 2026 ShieldPay AI
+</p>
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- WARNING MODAL -->
+
+<div class="modal" id="warningModal">
+
+<div class="warning">
+
+<div class="warning-top">
+
+<div class="warning-icon">
+🚨
+</div>
+
+<h2 id="warningTitle">
+PAYMENT SAFETY WARNING
+</h2>
+
+<p class="warning-sub">
+ShieldPay AI detected suspicious signals
+BEFORE the payment could proceed.
+</p>
+
+</div>
+
+
+<div class="risk">
+
+<div class="risk-number" id="riskScore">
+0
+</div>
+
+<div class="risk-label">
+RISK SCORE / 100
+</div>
+
+</div>
+
+
+<h3>⚠️ Why was this flagged?</h3>
+
+<div class="signal-list" id="signalList"></div>
+
+
+<div class="action">
+
+<strong>🛑 Recommended action</strong>
+
+<p id="recommendation" style="margin-top:7px"></p>
+
+</div>
+
+
+<div class="modal-buttons">
+
+<button class="block-button"
+onclick="blockPayment()">
+🛑 STOP PAYMENT
+</button>
+
+<button class="verify-button"
+onclick="verifyPayment()">
+🔍 VERIFY & CONTINUE
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- SAFE PAYMENT MODAL -->
+
+<div class="modal" id="safeModal">
+
+<div class="safe-modal">
+
+<div class="safe-icon">🔐</div>
+
+<h2>Final Verification</h2>
+
+<p style="color:var(--muted);line-height:1.6;margin:15px 0">
+
+You chose to continue after the safety check.
+Verify the recipient and amount independently.
+
+<br><br>
+
+<strong id="finalDetails"></strong>
+
+</p>
+
+<button class="btn primary"
+style="width:100%"
+onclick="completeDemoPayment()">
+
+✅ CONFIRM DEMO PAYMENT
+
+</button>
+
+<br><br>
+
+<button class="btn secondary"
+style="width:100%"
+onclick="closeSafe()">
+
+Cancel
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div class="toast" id="toast"></div>
+
+
+<script>
+
+/* =====================================
+   SHIELDPAY AI
+   VH-S02 PROTOTYPE
+===================================== */
+
+
+/* NAVIGATION */
+
+function scrollToId(id){
+
+ document.getElementById(id).scrollIntoView({
+  behavior:"smooth"
+ });
+
+}
+
+
+/* DARK MODE */
+
+function toggleDark(){
+
+ document.body.classList.toggle("dark");
+
+ localStorage.setItem(
+  "shieldpay_dark",
+  document.body.classList.contains("dark")
+ );
+
+}
+
+if(localStorage.getItem("shieldpay_dark")==="true"){
+ document.body.classList.add("dark");
+}
+
+
+/* TOAST */
+
+function showToast(message){
+
+ const t=document.getElementById("toast");
+
+ t.textContent=message;
+
+ t.classList.add("show");
+
+ setTimeout(()=>{
+  t.classList.remove("show");
+ },3000);
+
+}
+
+
+/* UPDATE PAYMENT DISPLAY */
+
+document.getElementById("payAmount")
+.addEventListener("input",updatePaymentDisplay);
+
+document.getElementById("recipient")
+.addEventListener("input",updatePaymentDisplay);
+
+function updatePaymentDisplay(){
+
+ let amount=
+ document.getElementById("payAmount").value || "0";
+
+ document.getElementById("amountDisplay")
+ .textContent=
+ Number(amount).toLocaleString("en-IN");
+
+ document.getElementById("recipientDisplay")
+ .textContent=
+ document.getElementById("recipient").value ||
+ "Recipient";
+
+}
+
+
+/* =====================================
+   DEMO DATA
+===================================== */
+
+function loadScamDemo(){
+
+ document.getElementById("recipient").value=
+ "ABC Customer Support";
+
+ document.getElementById("payAmount").value=
+ "1500";
+
+ document.getElementById("method").value=
+ "UPI";
+
+ document.getElementById("paymentMessage").value=
+ `URGENT! Your bank account will be blocked today.
+
+Complete KYC immediately.
+
+Pay ₹1500 verification fee using this link:
+http://secure-bank-login.example.xyz
+
+Do not ignore this message.`;
+
+ updatePaymentDisplay();
+
+ scrollToId("payment");
+
+ showToast("🚨 Fake KYC scenario loaded.");
+
+}
+
+
+function loadSupportDemo(){
+
+ document.getElementById("recipient").value=
+ "Customer Care Agent";
+
+ document.getElementById("payAmount").value=
+ "5000";
+
+ document.getElementById("method").value=
+ "UPI";
+
+ document.getElementById("paymentMessage").value=
+ `Hello, I am from customer support.
+
+Your refund is waiting.
+
+Install a remote access application,
+share your screen and tell me the OTP.
+
+Send ₹5000 to process the refund immediately.`;
+
+ updatePaymentDisplay();
+
+ scrollToId("payment");
+
+ showToast("☎️ Fake support scenario loaded.");
+
+}
+
+
+function loadSafeDemo(){
+
+ document.getElementById("recipient").value=
+ "ABC Online Store";
+
+ document.getElementById("payAmount").value=
+ "450";
+
+ document.getElementById("method").value=
+ "UPI";
+
+ document.getElementById("paymentMessage").value=
+ `Payment of ₹450 for your online order.
+
+Please verify the order and payment
+inside the official shopping application.
+
+Never share your OTP or PIN.`;
+
+ updatePaymentDisplay();
+
+ scrollToId("payment");
+
+ showToast("✅ Normal payment scenario loaded.");
+
+}
+
+
+/* =====================================
+   START PAYMENT
+===================================== */
+
+function startPayment(){
+
+ /*
+    IMPORTANT:
+    The payment does NOT happen here.
+
+    This is the central VH-S02 feature:
+    SAFETY CHECK FIRST.
+ */
+
+ const recipient=
+ document.getElementById("recipient").value.trim();
+
+ const amount=
+ document.getElementById("payAmount").value;
+
+ const method=
+ document.getElementById("method").value;
+
+ const message=
+ document.getElementById("paymentMessage").value.trim();
+
+
+ if(!recipient){
+
+  showToast("Enter a recipient.");
+
+  return;
+ }
+
+
+ if(!amount || Number(amount)<=0){
+
+  showToast("Enter a valid payment amount.");
+
+  return;
+ }
+
+
+ if(!message){
+
+  showToast("Enter the payment context.");
+
+  return;
+ }
+
+
+ /* Run safety analysis */
+
+ const result=
+ analyzePayment(message,recipient,amount,method);
+
+
+ /* SAVE */
+
+ saveHistory(
+  result.score,
+  result.level,
+  recipient,
+  amount
+ );
+
+
+ /* ALWAYS CHECK BEFORE PAYMENT */
+
+ if(result.score>=35){
+
+  showWarning(result);
+
+ }else{
+
+  showSafeCheck(result);
+
+ }
+
+}
+
+
+/* =====================================
+   DETECTION ENGINE
+===================================== */
+
+function analyzePayment(
+ message,
+ recipient,
+ amount,
+ method
+){
+
+ let score=0;
+
+ let signals=[];
+
+
+ const lower=
+ message.toLowerCase();
+
+
+ /* URGENCY */
+
+ const urgency=[
+  "urgent",
+  "immediately",
+  "immediate",
+  "act now",
+  "right now",
+  "within 10 minutes",
+  "within 5 minutes",
+  "today",
+  "last warning",
+  "do not ignore",
+  "blocked",
+  "suspended",
+  "deactivated"
+ ];
+
+ if(hasAny(lower,urgency)){
+
+  score+=20;
+
+  signals.push({
+   title:"Urgency / pressure",
+   text:"The message tries to make the user act quickly or uses a threat."
+  });
+
+ }
+
+
+ /* OTP */
+
+ const otp=[
+  "otp",
+  "one time password",
+  "verification code",
+  "pin",
+  "password",
+  "cvv"
+ ];
+
+ if(hasAny(lower,otp)){
+
+  score+=25;
+
+  signals.push({
+   title:"Sensitive credential request",
+   text:"The message mentions an OTP, PIN, password, CVV or verification code."
+  });
+
+ }
+
+
+ /* REMOTE ACCESS */
+
+ const remote=[
+  "anydesk",
+  "teamviewer",
+  "remote access",
+  "screen share",
+  "share your screen",
+  "remote app",
+  "install this app",
+  "download this app"
+ ];
+
+ if(hasAny(lower,remote)){
+
+  score+=30;
+
+  signals.push({
+   title:"Remote access / screen sharing",
+   text:"The sender appears to request remote device access or screen sharing."
+  });
+
+ }
+
+
+ /* IMPERSONATION */
+
+ const impersonation=[
+  "bank",
+  "customer support",
+  "customer care",
+  "government",
+  "police",
+  "income tax",
+  "kyc",
+  "courier",
+  "official"
+ ];
+
+ if(hasAny(lower,impersonation)){
+
+  score+=12;
+
+  signals.push({
+   title:"Possible impersonation",
+   text:"The sender claims to represent an organization or authority. Verify independently."
+  });
+
+ }
+
+
+ /* PAYMENT */
+
+ const payment=[
+  "send money",
+  "pay ₹",
+  "transfer",
+  "payment",
+  "verification fee",
+  "processing fee",
+  "activation fee",
+  "collect request",
+  "upi request"
+ ];
+
+ if(hasAny(lower,payment)){
+
+  score+=12;
+
+  signals.push({
+   title:"Payment request",
+   text:"The message contains an instruction to make or authorize a payment."
+  });
+
+ }
+
+
+ /* REFUND */
+
+ const refund=[
+  "refund",
+  "cashback",
+  "prize",
+  "reward",
+  "lottery"
+ ];
+
+ if(hasAny(lower,refund)){
+
+  score+=8;
+
+  signals.push({
+   title:"Refund / reward theme",
+   text:"Unexpected refunds or rewards can be used in social-engineering attacks."
+  });
+
+ }
+
+
+ /* QR */
+
+ const qr=[
+  "qr code",
+  "scan qr",
+  "scan this qr",
+  "scan to receive"
+ ];
+
+ if(hasAny(lower,qr)){
+
+  score+=15;
+
+  signals.push({
+   title:"QR payment instruction",
+   text:"The message asks the user to interact with a QR/payment request."
+  });
+
+ }
+
+
+ /* URL */
+
+ const urls=
+ message.match(/https?:\/\/[^\s]+/gi)||[];
+
+ if(urls.length){
+
+  urls.forEach(url=>{
+
+   if(url.toLowerCase().startsWith("http://")){
+
+    score+=12;
+
+    signals.push({
+     title:"Insecure HTTP link",
+     text:"The supplied URL uses HTTP rather than HTTPS."
+    });
+
+   }
+
+
+   if(/https?:\/\/\d{1,3}(\.\d{1,3}){3}/i.test(url)){
+
+    score+=20;
+
+    signals.push({
+     title:"IP-address URL",
+     text:"The link uses a raw IP address rather than a normal domain."
+    });
+
+   }
+
+
+   try{
+
+    const host=
+    new URL(url).hostname.toLowerCase();
+
+
+    if(
+     host.includes("login") ||
+     host.includes("verify") ||
+     host.includes("secure") ||
+     host.includes("update")
+    ){
+
+     score+=8;
+
+     signals.push({
+      title:"Sensitive-action URL",
+      text:"The domain contains terms associated with login or verification."
+     });
+
+    }
+
+
+    if(host.length>35){
+
+     score+=7;
+
+     signals.push({
+      title:"Unusually long domain",
+      text:"The domain is unusually long and should be independently verified."
+     });
+
+    }
+
+   }catch(e){}
+
+  });
+
+ }
+
+
+ /* LARGE AMOUNT */
+
+ if(Number(amount)>=50000){
+
+  score+=8;
+
+  signals.push({
+   title:"High-value transaction",
+   text:"A large payment deserves additional independent verification."
+  });
+
+ }
+
+
+ /* PAYMENT METHOD */
+
+ if(method==="QR Code"){
+
+  score+=5;
+
+  signals.push({
+   title:"QR payment method",
+   text:"Verify the recipient and purpose before approving a QR-based payment."
+  });
+
+ }
+
+
+ score=Math.min(score,100);
+
+
+ let level="LOW";
+
+ if(score>=65){
+  level="HIGH";
+ }else if(score>=35){
+  level="MEDIUM";
+ }
+
+
+ return{
+  score,
+  level,
+  signals
+ };
+
+}
+
+
+/* WORD CHECK */
+
+function hasAny(text,array){
+
+ return array.some(word=>
+ text.includes(word.toLowerCase())
+ );
+
+}
+
+
+/* =====================================
+   WARNING
+===================================== */
+
+function showWarning(result){
+
+ document.getElementById("riskScore")
+ .textContent=result.score;
+
+
+ const list=
+ document.getElementById("signalList");
+
+ list.innerHTML="";
+
+
+ result.signals.forEach(signal=>{
+
+  list.innerHTML+=`
+
+  <div class="signal">
+
+   <strong>⚠️ ${signal.title}</strong>
+
+   <span>${signal.text}</span>
+
+  </div>
+
+  `;
+
+ });
+
+
+ if(result.level==="HIGH"){
+
+  document.getElementById("warningTitle")
+  .textContent=
+  "HIGH-RISK PAYMENT BLOCKED";
+
+  document.getElementById("recommendation")
+  .textContent=
+  "Do not send money yet. Do not scan the QR code, open the suspicious link, or share OTP/PIN. Verify the sender using an independently obtained official contact.";
+
+ }else{
+
+  document.getElementById("warningTitle")
+  .textContent=
+  "PAYMENT WARNING";
+
+  document.getElementById("recommendation")
+  .textContent=
+  "Pause before paying. Independently verify the recipient, payment purpose and sender.";
+
+ }
+
+
+ document.getElementById("warningModal")
+ .classList.add("show");
+
+}
+
+
+/* =====================================
+   LOW RISK CHECK
+===================================== */
+
+function showSafeCheck(result){
+
+ document.getElementById("riskScore")
+ .textContent=result.score;
+
+ document.getElementById("signalList")
+ .innerHTML=`
+
+ <div class="signal">
+
+ <strong>✅ No strong warning pattern detected</strong>
+
+ <span>
+ The prototype did not identify its predefined high-risk
+ signals. This does NOT guarantee that the payment is safe.
+ </span>
+
+ </div>
+
+ `;
+
+ document.getElementById("warningTitle")
+ .textContent=
+ "SAFETY CHECK COMPLETE";
+
+ document.getElementById("recommendation")
+ .textContent=
+ "Confirm the recipient, amount and purpose before continuing.";
+
+ document.getElementById("warningModal")
+ .classList.add("show");
+
+}
+
+
+/* =====================================
+   STOP PAYMENT
+===================================== */
+
+function blockPayment(){
+
+ document.getElementById("warningModal")
+ .classList.remove("show");
+
+ let old=
+ Number(localStorage.getItem("shieldpay_blocked")||0);
+
+ localStorage.setItem(
+  "shieldpay_blocked",
+  old+1
+ );
+
+ updateStats();
+
+ showToast(
+  "🛑 Payment stopped. No money was transferred."
+ );
+
+}
+
+
+/* =====================================
+   VERIFY
+===================================== */
+
+function verifyPayment(){
+
+ document.getElementById("warningModal")
+ .classList.remove("show");
+
+ const recipient=
+ document.getElementById("recipient").value;
+
+ const amount=
+ Number(document.getElementById("payAmount").value)
+ .toLocaleString("en-IN");
+
+
+ document.getElementById("finalDetails")
+ .textContent=
+ `₹${amount} → ${recipient}`;
+
+
+ document.getElementById("safeModal")
+ .classList.add("show");
+
+}
+
+
+/* =====================================
+   COMPLETE DEMO PAYMENT
+===================================== */
+
+function completeDemoPayment(){
+
+ document.getElementById("safeModal")
+ .classList.remove("show");
+
+ showToast(
+  "✅ Demo payment completed. No real money was transferred."
+ );
+
+}
+
+
+function closeSafe(){
+
+ document.getElementById("safeModal")
+ .classList.remove("show");
+
+}
+
+
+/* =====================================
+   HISTORY
+===================================== */
+
+function getHistory(){
+
+ return JSON.parse(
+  localStorage.getItem("shieldpay_history")||"[]"
+ );
+
+}
+
+
+function saveHistory(
+ score,
+ level,
+ recipient,
+ amount
+){
+
+ let history=getHistory();
+
+ history.unshift({
+
+  score,
+  level,
+  recipient,
+  amount,
+  time:new Date().toLocaleString()
+
+ });
+
+ history=history.slice(0,20);
+
+ localStorage.setItem(
+  "shieldpay_history",
+  JSON.stringify(history)
+ );
+
+ updateStats();
+ renderHistory();
+
+}
+
+
+function renderHistory(){
+
+ const history=getHistory();
+
+ const box=
+ document.getElementById("historyList");
+
+
+ if(history.length===0){
+
+  box.innerHTML=
+  `<p style="color:var(--muted)">
+   No safety checks yet.
+   </p>`;
+
+  return;
+ }
+
+
+ box.innerHTML="";
+
+
+ history.forEach(item=>{
+
+  const cls=
+   item.level==="HIGH"
+   ? "high"
+   : item.level==="MEDIUM"
+   ? "medium"
+   : "low";
+
+
+  box.innerHTML+=`
+
+  <div class="history-item">
+
+   <div class="history-text">
+
+    <strong>
+    ${escapeHTML(item.recipient)}
+    — ₹${Number(item.amount).toLocaleString("en-IN")}
+    </strong>
+
+    <small>${item.time}</small>
+
+   </div>
+
+   <span class="tag ${cls}">
+   ${item.level} • ${item.score}/100
+   </span>
+
+  </div>
+
+  `;
+
+ });
+
+}
+
+
+/* =====================================
+   STATS
+===================================== */
+
+function updateStats(){
+
+ const history=getHistory();
+
+ document.getElementById("scanCount")
+ .textContent=history.length;
+
+ document.getElementById("blockedCount")
+ .textContent=
+ localStorage.getItem("shieldpay_blocked")||0;
+
+}
+
+
+/* =====================================
+   CLEAR HISTORY
+===================================== */
+
+function clearHistory(){
+
+ localStorage.removeItem("shieldpay_history");
+
+ renderHistory();
+
+ updateStats();
+
+ showToast("History cleared.");
+
+}
+
+
+/* =====================================
+   HTML ESCAPE
+===================================== */
+
+function escapeHTML(text){
+
+ return String(text)
+ .replace(/&/g,"&amp;")
+ .replace(/</g,"&lt;")
+ .replace(/>/g,"&gt;")
+ .replace(/"/g,"&quot;")
+ .replace(/'/g,"&#039;");
+
+}
+
+
+/* INITIALIZE */
+
+updatePaymentDisplay();
+renderHistory();
+updateStats();
+
+</script>
+<center>
+  <h2>About</h2>
+  <h3>Team Leader :Harihara Sudhan M</h3>
+   <h3>Member : Chandru R</h3>
+    <h3>Member : Ebinson Samuel B </h3>
+</body>
+</html>
