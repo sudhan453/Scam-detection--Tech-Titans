@@ -1,0 +1,640 @@
+Absolutely. Here is a complete PowerPoint presentation structure for your hackathon project ShieldPay AI – VH-S02, based on the website we created.
+
+🛡️ SHIELDPAY AI
+
+Detect the Risk Before You Send the Money
+
+Hackathon Problem Statement: VH-S02
+Team Leader: Harihara Sudhan M
+Team Members: Chandru, Ebinson Samuel
+
+
+---
+
+Slide 1 — Title Slide
+
+🛡️ ShieldPay AI
+
+Detecting Digital Payment Scams Before Money Is Sent
+
+Problem Statement: VH-S02
+Team Leader: Harihara Sudhan M
+Team Members:
+
+Chandru
+
+Ebinson Samuel
+
+
+Technology: HTML5 • CSS3 • JavaScript
+
+
+---
+
+Slide 2 — Problem Statement
+
+🚨 The Problem
+
+Digital payment scams are increasing because attackers use:
+
+Fake customer-care calls
+
+Fake KYC/update messages
+
+QR-code payment tricks
+
+Fake shopping websites
+
+Impersonation
+
+Urgency and pressure tactics
+
+OTP/PIN/CVV requests
+
+Remote-access applications
+
+Fake refund/reward messages
+
+
+Major Issue
+
+Most existing systems focus on detecting fraud after the transaction happens.
+
+Our idea:
+
+> Stop and analyze the payment before money is sent.
+
+
+
+
+---
+
+Slide 3 — Our Solution
+
+💡 ShieldPay AI
+
+ShieldPay AI is a pre-payment safety checking system.
+
+Instead of:
+
+PAY → FRAUD DETECTED
+
+Our system follows:
+
+PAY NOW
+
+↓
+
+SAFETY CHECK
+
+↓
+
+RISK ANALYSIS
+
+↓
+
+WARNING
+
+↓
+
+VERIFY
+
+↓
+
+DEMO PAYMENT
+
+This gives the user an opportunity to stop before completing a suspicious payment.
+
+
+---
+
+Slide 4 — How ShieldPay AI Works
+
+🔍 Step-by-Step Process
+
+1. User enters payment information
+
+↓
+
+2. ShieldPay AI analyzes the payment
+
+↓
+
+3. Suspicious signals are identified
+
+↓
+
+4. Risk score is calculated
+
+↓
+
+5. System displays LOW / MEDIUM / HIGH risk
+
+↓
+
+6. User receives an explanation
+
+↓
+
+7. User can verify or block the payment
+
+
+---
+
+Slide 5 — Scam Signals Detected
+
+🔎 What Does the System Check?
+
+ShieldPay AI looks for multiple suspicious signals:
+
+⚠️ Urgency or pressure
+
+🔐 OTP / PIN / CVV requests
+
+📱 Remote-access or screen-sharing requests
+
+👤 Possible impersonation
+
+💰 Unusual payment requests
+
+🎁 Refund/reward scams
+
+📷 QR-code payment instructions
+
+🔗 Suspicious URLs
+
+🌐 IP-address-based URLs
+
+🔴 Sensitive-action links
+
+💸 High-value transactions
+
+
+
+---
+
+Slide 6 — Risk Scoring
+
+📊 Explainable Risk Score
+
+The system generates a score from:
+
+0 → 100
+
+🟢 LOW RISK
+
+Normal transaction with few suspicious indicators.
+
+🟡 MEDIUM RISK
+
+Some suspicious signals are detected.
+
+🔴 HIGH RISK
+
+Multiple strong scam indicators are detected.
+
+The important feature is that the system doesn't only show a score—it also explains why the transaction is considered suspicious.
+
+
+---
+
+Slide 7 — Example: Fake KYC Scam
+
+🎭 Scenario
+
+User receives:
+
+> “Your bank KYC will expire today. Update immediately or your account will be blocked.”
+
+
+
+The message contains:
+
+Urgency
+
+KYC/account pressure
+
+Suspicious link
+
+Request for sensitive information
+
+
+ShieldPay AI Response
+
+🔴 HIGH RISK
+
+The system displays the suspicious signals before allowing the user to continue.
+
+Recommended action:
+Verify the request through the official bank/app instead of following the suspicious message.
+
+
+---
+
+Slide 8 — Example: Fake Customer Care Scam
+
+📞 Scenario
+
+A scammer claims to be customer support and asks the user to:
+
+Install a remote-access application
+
+Share their screen
+
+Provide OTP
+
+Make a “verification payment”
+
+
+ShieldPay AI Detection
+
+🚨 Signals detected:
+
+Impersonation
+
+Remote access
+
+OTP request
+
+Payment request
+
+Urgency
+
+
+Result:
+
+🔴 HIGH RISK
+
+The user can BLOCK PAYMENT.
+
+
+---
+
+Slide 9 — Example: Normal Payment
+
+🟢 Normal Transaction
+
+Example:
+
+Merchant: College Canteen
+Amount: ₹150
+Method: UPI
+Suspicious signals: None
+
+ShieldPay AI performs the safety check.
+
+Result:
+
+🟢 LOW RISK
+
+The user can verify the details and continue with the demo payment.
+
+
+---
+
+Slide 10 — Main Website Features
+
+🌐 ShieldPay AI Website
+
+Our prototype includes:
+
+🛡️ Pre-payment safety check
+
+📊 Risk score
+
+🚨 Scam warnings
+
+🔍 Explainable detection
+
+🚫 Block payment option
+
+✅ Verification option
+
+🧪 Demo scenarios
+
+📜 Safety-check history
+
+📈 Detection statistics
+
+🌙 Dark mode
+
+📱 Responsive mobile design
+
+💾 Local browser storage
+
+
+
+---
+
+Slide 11 — Important Safety Flow
+
+🔐 Payment Protection
+
+The system does not immediately make the payment when the user presses Pay.
+
+Instead:
+
+Pay Button
+
+↓
+
+Safety Analysis
+
+↓
+
+Risk Warning
+
+↓
+
+User Verification
+
+↓
+
+Confirmation
+
+↓
+
+Demo Payment
+
+This is the central idea of ShieldPay AI.
+
+
+---
+
+Slide 12 — Technology Used
+
+💻 Technologies
+
+Technology	Purpose
+
+HTML5	Website structure
+CSS3	Design and responsive interface
+JavaScript	Detection logic and interaction
+LocalStorage	Store safety history
+Browser APIs	Client-side functionality
+
+
+Prototype
+
+The complete prototype can run as a single HTML file, making it suitable for TrebEdit and browser demonstrations.
+
+
+---
+
+Slide 13 — Detection Logic
+
+🧠 Rule-Based Risk Analysis
+
+The prototype checks different indicators.
+
+Example:
+
+Urgency detected → Increase risk
+OTP request detected → Increase risk
+Remote-access request detected → Increase risk
+Suspicious URL detected → Increase risk
+High-value payment → Increase risk
+QR payment instruction → Increase risk
+
+The individual signals are combined to produce an overall risk score.
+
+
+---
+
+Slide 14 — User Interface
+
+🖥️ Main Dashboard
+
+The website provides:
+
+Payment safety checker
+
+Risk score display
+
+Scam signal explanation
+
+Warning modal
+
+Demo payment confirmation
+
+History section
+
+Statistics
+
+Team information
+
+
+Design Goals
+
+Simple + Fast + Understandable + Mobile Friendly
+
+
+---
+
+Slide 15 — Privacy & Security
+
+🔒 Privacy-Conscious Design
+
+ShieldPay AI prototype is designed to avoid unnecessary collection of personal information.
+
+Key principles:
+
+No real money transfer
+
+No real banking credentials
+
+No real OTP collection
+
+No real PIN/CVV collection
+
+Demo-only transactions
+
+Client-side prototype
+
+Local browser history
+
+
+Important
+
+The prototype demonstrates the concept and should not be treated as a real banking security system.
+
+
+---
+
+Slide 16 — Advantages
+
+⭐ Benefits of ShieldPay AI
+
+For users:
+
+Provides an additional safety check
+
+Makes suspicious signals understandable
+
+Helps users pause before payment
+
+Reduces impulsive payments
+
+
+For organizations:
+
+Can provide an additional fraud-prevention layer
+
+Can be integrated into payment workflows
+
+Can generate risk information for security systems
+
+
+
+---
+
+Slide 17 — Future Enhancements
+
+🚀 Future Scope
+
+The prototype can be extended with:
+
+🤖 Machine-learning scam detection
+
+🧠 AI-based message analysis
+
+🔗 Real-time URL reputation checking
+
+📱 Mobile application
+
+🏦 Bank/payment-provider integration
+
+🔐 Strong authentication
+
+🌐 Multilingual support
+
+🗣️ Voice scam detection
+
+📷 QR-code analysis
+
+☁️ Cloud-based fraud intelligence
+
+📊 Real-time threat database
+
+
+
+---
+
+Slide 18 — Real-World Workflow
+
+🌍 Possible Production System
+
+User Payment Request
+
+↓
+
+ShieldPay Security Engine
+
+↓
+
+URL / QR / Message Analysis
+
+↓
+
+Fraud Intelligence
+
+↓
+
+Risk Score
+
+↓
+
+LOW → Continue
+
+MEDIUM → Verify
+
+HIGH → Warn / Block
+
+↓
+
+Secure Payment
+
+
+---
+
+Slide 19 — Why Our Idea Matters
+
+🛡️ Core Innovation
+
+Traditional approach:
+
+> Transaction → Fraud Detection → Investigation
+
+
+
+ShieldPay AI proposes:
+
+> Transaction Request → Risk Detection → User Warning → Verification → Payment
+
+
+
+Key Concept
+
+“Detect the risk before you send the money.”
+
+This focuses on prevention at the point where the user can still stop the transaction.
+
+
+---
+
+Slide 20 — Team
+
+👨‍💻 Our Hackathon Team
+
+👑 Team Leader
+
+Harihara Sudhan M
+
+👨‍💻 Team Member
+
+Chandru
+
+👨‍💻 Team Member
+
+Ebinson Samuel
+
+Project
+
+🛡️ ShieldPay AI
+
+Problem Statement: VH-S02
+
+
+---
+
+Slide 21 — Conclusion
+
+🛡️ ShieldPay AI
+
+Digital payment scams can use psychological pressure, impersonation, suspicious links, QR codes and requests for sensitive information.
+
+ShieldPay AI introduces a pre-payment safety layer that analyzes suspicious signals and warns users before the payment is completed.
+
+Our Message
+
+> STOP. CHECK. VERIFY. THEN PAY.
+
+
+
+
+---
+
+Slide 22 — Thank You
+
+🙏 THANK YOU
+
+🛡️ ShieldPay AI
+
+Detect the Risk Before You Send the Money
+
+Team Leader: Harihara Sudhan M
+Members: Chandru • Ebinson Samuel
+
+Questions?
+
+Thank You!
